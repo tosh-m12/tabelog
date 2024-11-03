@@ -155,3 +155,37 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+AUTH_USER_MODEL = 'tabelog.CustomUser'
+
+# sitesフレームワーク用のサイトID
+SITE_ID = 1
+
+# ログイン・ログアウト時のリダイレクト先
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
+
+# 認証方式を「メルアドとパスワード」に設定
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# ユーザ名は使用しない
+ACCOUNT_USERNAME_REQUIRED = False
+# ユーザ登録時にメルアド確認をする
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+
+# ユーザー登録時にパスワードの要求を一回にする
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+
+# ユーザーがログインしていない場合に、電子メールの確認が成功した後にリダイレクトする URL
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
+
+# 認証されたユーザーの場合、電子メールの確認が成功した後にリダイレクトする URL
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/'
+
+# ログアウトをクリックしたらログアウト確認画面を経由しないで直接ログアウトする
+ACCOUNT_LOGOUT_ON_GET = True
+
+# ユーザー登録確認メールを送信する
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+# ユーザ登録にメルアド必須にする
+ACCOUNT_EMAIL_REQUIRED = True
