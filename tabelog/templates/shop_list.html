@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <form action="" method="get">
+        <input name="query" value="{{ request.GET.query }}" type="text" />
+        <button type="submit">店舗名・カテゴリー検索</button>
+    </form>
+    {% for category in categorys %}
+        <a href="{% url 'top' %}?category={{ category.id }}">{{ category.name }}</a>
+    {% endfor %}
+    <h1>店舗一覧</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th></th>
+                <th>店舗名</th>
+                <th>カテゴリー</th>
+                <th>説明</th>
+            </tr>
+        </thead>
+        {% for shop in object_list %}
+        <tr>
+            <td>
+                {% if shop.image %}
+                    <img src="{{ shop.image.url }}" width="100px">
+                {% else %}
+                    <img src="{% static 'image/noImage.png' %}" width="100px">
+                {% endif %}
+            </td>
+            <td><a href="{% url 'shop-detail' shop.id %}">{{ shop.name }}</a></td>
+            <td>{{ shop.category.name }}</td>
+            <td>{{ shop.description }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

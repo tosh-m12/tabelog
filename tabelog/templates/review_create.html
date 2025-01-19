@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>レビュー</h1>
+    <form action="{% url 'review-create' shop.pk %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>作成する</button>
+    </form>    
+
+
+
+{% endblock %}

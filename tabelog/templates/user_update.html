@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>ユーザー編集</h1>
+    <form action="{% url 'user-update' request.user.id %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>変更する</button>
+    </form>
+{% endblock %}

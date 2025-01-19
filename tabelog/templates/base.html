@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <header>
+        {% if user.is_authenticated %}
+            <a href="{% url 'user' user.id %}">会員メニュー</a>
+            <a href="{% url 'account_logout' %}">signout</a>
+            <a href="{% url 'top' %}">トップへ</a>
+        {% else %}
+            <a href="{% url 'account_login' %}">login</a>
+            <a href="{% url 'account_signup' %}">signup</a>
+            <a href="{% url 'top' %}">トップへ</a>
+        {% endif %}
+    </header>
+    {% block content %}{% endblock %}
+</body>
+</html>

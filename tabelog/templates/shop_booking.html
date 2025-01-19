@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>予約一覧</h1>
+<ul>
+    {% for booking in bookings %}
+    <li>
+        <a href="{% url 'shop' shop.shop.id %}">{{ booking.shop.name }}</a><br>
+        予約日時： {{ booking.booking_date }}<br>
+        人数：{{ booking.head_count }}人
+    </li>
+    {% endfor %}
+</ul>
+
+
+
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 class="center">有料会員解約</h1>
+    <form action="{% url 'credit-delete' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">解約</button>
+    </form>
+    <a href="{% url 'top' %}">トップへ</a>
+
+{% endblock %}
+

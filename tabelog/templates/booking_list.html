@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>予約店舗リスト</h1>
+    {% for booking in object_list %}
+    <div>
+        <a href="{% url 'shop-detail' booking.shop.pk %}">{{ booking.shop.name }}</a>
+        <p>{{ booking.user.email }}</p>
+        <p>{{ booking.booking_date }}{{ booking.booking_time }} {{ booking.head_count }}名</p>
+        <button class="btn btn-primary" onclick="location.href='{% url 'booking-edit' shop_pk=booking.shop.pk pk=booking.pk %}'">修正</button>
+        <button class="btn btn-danger" onclick="location.href='{% url 'booking-delete' shop_pk=booking.shop.pk pk=booking.pk %}'">キャンセル</button>
+    </div>
+    {% empty %}
+    <p>予約済み店舗はまだありません</p>
+    {% endfor %}
+{% endblock %}
+
