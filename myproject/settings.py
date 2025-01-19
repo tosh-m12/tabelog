@@ -131,7 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ja'
 
-TIME_ZONE = 'Asia/Shanghai'
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
@@ -189,3 +189,16 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 # ユーザ登録にメルアド必須にする
 ACCOUNT_EMAIL_REQUIRED = True
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# STRIPEの設定
+STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
+STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
+# STRIPE_PRICE_ID = env('STRIPE_PRICE_ID')
+STRIPE_PRICE_ID = 'price_1QRCfACk4PUbSJDuXoNee5wm'
+
+# 画像関連の設定
+MEDIA_URL = '/media/'
+if DEBUG:
+    MEDIA_ROOT = BASE_DIR / 'media_local'

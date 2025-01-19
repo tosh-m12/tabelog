@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>予約を変更する</h1>
+    <form action="{% url 'booking-edit' shop.pk object.pk %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>変更</button>
+
+    </form>    
+
+{% endblock %}

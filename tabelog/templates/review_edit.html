@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>レビューを編集する</h1>
+    <form action="{% url 'review-edit' shop.pk object.pk %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>更新</button>
+    </form>    
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>会員情報</h1>
+    <h1>{{ object.email }}</h1>
+    <a>会員ステータス</a>
+    {% if user.is_authenticated and user.is_paid %}
+    <p>有料会員</p>
+    {% else %}
+    <p>一般会員</p>
+    <p>会員登録でレビュー投稿や店舗の予約ができるようになります</p>
+    {% endif %}
+    <a href="{% url 'user-update' user.id %}">編集</a>
+    {% if user.is_authenticated and user.is_paid %}
+    <a href="{% url 'credit-update' %}">支払い情報</a>
+    <a href="{% url 'credit-delete' %}">有料会員解約</a>
+    {% else %}
+    <a href="{% url 'credit-register' %}">有料会員登録</a>
+    {% endif %}
+    <a href="{% url 'account_change_password' %}">パスワード変更</a>
+    <h1>お気に入り店舗リスト</h1>
+    {% if user.is_authenticated and user.is_paid %}
+        {% for shop in fav_shops %}
+        <div>
+            <a href="{% url 'shop-detail' shop.id %}">{{ shop.name }}</a>
+        </div>
+        {% empty %}
+        <p>お気に入り店舗はまだありません</p>
+        {% endfor %}
+    {% else %}
+    <p>有料会員用の機能です</p>
+    {% endif %}
+    <h1>投稿レビュー一覧</h1>
+    {% if user.is_authenticated and user.is_paid %}
+        {% for review in reviews %}
+        <div>
+            <a href="{% url 'shop-detail' review.shop.id %}">{{ review.shop.name }}</a>
+            <p>{{ review.comment }}</p>
+            <button class="btn btn-primary" onclick="location.href='{% url 'review-edit' shop_pk=review.shop.pk pk=review.pk %}'">更新</button>
+            <button class="btn btn-danger" onclick="location.href='{% url 'review-delete' shop_pk=review.shop.pk pk=review.pk %}'">削除</button>
+        </div>
+        {% empty %}
+        <p>レビューはまだ投稿していません。</p>
+        {% endfor %}
+    {% else %}
+    <p>有料会員用の機能です</p>
+    {% endif %}
+    <h1>予約店舗リスト</h1>
+    {% if user.is_authenticated and user.is_paid %}
+        <div>
+            <a href="{% url 'booking' user.id %}">予約店舗一覧</a>
+        </div>
+    {% else %}
+    <p>有料会員用の機能です</p>
+    {% endif %}
+
+    
+
+{% endblock %}
+

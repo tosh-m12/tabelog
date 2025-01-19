@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <h1>店舗情報</h1>
+    <p>{{ object.name }}</p>
+    {% if object.image %}
+        <img src="{{ object.image.url }}" width="200px">
+    {% else %}
+        <img src="{% static 'image/noImage.png' %}" width="200px">
+    {% endif %}
+    {% if user.is_authenticated and user.is_paid %}
+        <form action="{% url 'fav-shop' object.pk %}" method="post">
+            {% csrf_token %}
+            {% if object in user.favorite_shop.all %}
+                <button type="submit" name="button">お気に入り解除</button>
+            {% else %}
+                <button type="submit" name="button">お気に入り追加</button>
+            {% endif %}
+        </form>
+    {% endif %}
+    <p>{{ object.description }}</p>
+    <table>
+        <tr>
+            <td>予算下限</td>
+            <td>{{ object.price_min }}円</td>
+        </tr>
+        <tr>
+            <td>予算上限</td>
+            <td>{{ object.price_max }}円</td>
+        </tr>
+        <tr>
+            <td>開店時間</td>
+            <td>{{ object.opening_time }}</td>
+        </tr>
+        <tr>
+            <td>閉店時間</td>
+            <td>{{ object.closing_time }}</td>
+        </tr>
+        <tr>
+            <td>郵便番号</td>
+            <td>{{ object.postal_code }}</td>
+        </tr>
+        <tr>
+            <td>住所</td>
+            <td>{{ object.address }}</td>
+        </tr>
+        <tr>
+            <td>電話番号</td>
+            <td>{{ object.phone }}</td>
+        </tr>
+        <tr>
+            <td>休業日</td>
+            <td>{{ object.regular_holiday }}</td>
+        </tr>
+    </table>
+    <h2>予約作成</h2>
+    <a href="{% url 'booking-create' object.id %}">作成</a>
+    <h2>レビュー</h2>
+    {% for review in reviews %}
+    <div>
+        {% if user.is_authenticated and user.id == review.user.id %}
+            <a href="{% url 'user' review.user.id %}">{{ review.user.last_name }} {{ review.user.first_name }}さん</a>
+        {% else %}
+            <p>{{ review.user.last_name }} {{ review.user.first_name }}さん</p>
+        {% endif %}
+        <p>投稿日{{ review.created_at }} 更新日{{ review.updated_at }}</p>
+        <p>{{ review.comment }}</p>
+    </div>
+    {% empty %}
+    <p>レビューはまだありません。</p>
+    {% endfor %}
+    
+    {% if user.is_authenticated and user.is_paid %}
+        <a href="{% url 'review-create' object.id %}">レビュー作成</a>
+    {% endif %}
+{% endblock %}

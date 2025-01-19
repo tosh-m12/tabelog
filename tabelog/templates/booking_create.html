@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>予約</h1>
+    <form action="{% url 'booking-create' shop.pk %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>予約する</button>
+    </form>
+{% endblock %}
