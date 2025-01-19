@@ -190,7 +190,16 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 # ユーザ登録にメルアド必須にする
 ACCOUNT_EMAIL_REQUIRED = True
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# メール送信設定
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = env('EMAIL_HOST')
+    EMAIL_PORT = env('EMAIL_PORT')
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 # STRIPEの設定
 STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
@@ -202,3 +211,11 @@ STRIPE_PRICE_ID = 'price_1QRCfACk4PUbSJDuXoNee5wm'
 MEDIA_URL = '/media/'
 if DEBUG:
     MEDIA_ROOT = BASE_DIR / 'media_local'
+else:
+    # cloudinary
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': env('CLOUD_NAME'),
+        'API_KEY': env('CLOUDINARY_API_KEY'),
+        'API_SECRET': env('CLOUDINARY_API_SECRET')
+    }
