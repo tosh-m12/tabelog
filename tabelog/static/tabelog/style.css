@@ -1,0 +1,60 @@
+
+body {
+  max-width: 1080px;
+  margin: 0 auto 0 auto;
+   font-family: "Source Sans Pro", "Hiragino Kaku Gothic ProN", Meiryo, Arial, sans-serif;
+}
+
+/* ヘッダー */
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  font-size: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.navbar-brand {
+  text-decoration: none;
+  color: #0d0d0d;
+}
+
+#nav-pc {
+  font-size: 14px;
+}
+
+#nav-pc ul {
+  display: flex;
+  padding-left: 0;
+}
+
+#nav-pc li {
+  list-style: none;
+}
+
+#nav-pc a {
+  text-decoration: none;
+  margin-left: 20px;
+  color: #0d0d0d;
+}
+
+#nav-pc a:hover {
+  text-decoration: underline;
+}
+
+
+ /* フッター */
+footer {
+  background-color: #dee2e6;
+  text-align: center;
+  padding: 80px 80px 30px 80px;
+}
+
+#copyright {
+  color: #000;
+  margin: 0;
+  font-size: 18px;
+}

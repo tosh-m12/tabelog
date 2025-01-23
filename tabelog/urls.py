@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.urls import path, include
 from .views import UserDetailView, UserUpdateView, CreditRegisterView, CreditDeleteView, CreditUpdateView, ShopListView, ShopDetailView, ReviewCreateView, ReviewEditView, ReviewDeleteView, fav_shop, BookingCreateView, BookingListView, BookingDeleteView, BookingEditView
 from django.conf import settings
@@ -6,6 +7,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('accounts/', include('allauth.urls')),
+    # path('', include('django.contrib.auth.urls')),
+
     path('', ShopListView.as_view(), name='top'),
     path('user/<int:pk>/', UserDetailView.as_view(), name='user'),
     path('user/update/<int:pk>/', UserUpdateView.as_view(), name='user-update'),
