@@ -310,6 +310,12 @@ class BookingCreateView(UserPassesTestMixin, CreateView):
 
     login_url = '/accounts/login/'
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        shop = get_object_or_404(Shop, pk=self.kwargs['pk'])
+        kwargs['shop'] = shop
+        return kwargs
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         shop = get_object_or_404(Shop, pk=self.kwargs['pk'])
