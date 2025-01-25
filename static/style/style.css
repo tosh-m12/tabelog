@@ -1,23 +1,19 @@
-
 body {
-  max-width: 1080px;
-  margin: 0 auto 0 auto;
-   font-family: "Source Sans Pro", "Hiragino Kaku Gothic ProN", Meiryo, Arial, sans-serif;
+  max-width: 1080px !important;
+  margin: 0 auto !important;
+  font-family: "Source Sans Pro", "Hiragino Kaku Gothic ProN", Meiryo, Arial, sans-serif !important;
 }
 
-/* ヘッダー */
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center; /* これで上下中央揃え */
+  margin-top: 14px;
+  margin-bottom: 14px;
 }
 
 .navbar-brand {
-  font-size: 20px;
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-.navbar-brand {
+  font-size: 22px !important;
   text-decoration: none;
   color: #0d0d0d;
 }
@@ -28,29 +24,90 @@ header {
 
 #nav-pc ul {
   display: flex;
-  padding-left: 0;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 #nav-pc li {
   list-style: none;
+  margin: 0;
 }
 
 #nav-pc a {
   text-decoration: none;
   margin-left: 20px;
-  color: #0d0d0d;
+  color: #0d0d0d !important; /* Bootstrapの影響を避けるために!importantを追加 */
 }
+
+/* Bootstrapのデフォルトナビゲーションスタイルをリセット */
+/* .nav-item, .nav-link {
+  margin: 0 !important;
+  padding: 0 !important;
+} */
 
 #nav-pc a:hover {
   text-decoration: underline;
 }
 
+.message-box {
+  background-color: lightgreen;
+  text-align: center;
+  margin: 5px auto;
+}
 
- /* フッター */
+#search-box {
+  text-align: center !important;
+  margin: 20px auto;
+}
+
+#search-box h1 {
+  font-size: 20px;
+}
+
+.btn {
+  height: auto;
+  text-align: center;
+  padding: auto 5px !important;
+  background-color: palegreen !important;
+  text-decoration: none;
+  color: black;
+  border-radius: 7px;
+  margin: 10px auto;
+}
+
+#shop-list h1 {
+  font-size: 20px;
+  text-align: center;
+}
+
+#shop-list {
+  margin: 20px auto;
+}
+
+#shop-list th {
+  text-align: center;
+}
+
+#shop-list table {
+  margin: 20px auto;
+  width: 80%;
+}
+
+#shop-list th,
+#shop-list td {
+  text-align: center; /* テーブルの各セルを中央揃え */
+  padding: 10px; /* セル内に余白を加えて見た目を改善 */
+}
+
 footer {
   background-color: #dee2e6;
   text-align: center;
-  padding: 80px 80px 30px 80px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 80px 30px; 
 }
 
 #copyright {
