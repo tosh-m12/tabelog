@@ -6,7 +6,8 @@
     <form action="{% url 'review-create' shop.pk %}" method="post">
         {% csrf_token %}
         {{ form|bootstrap }}
-        <button type="button" class="btn btn-primary">作成する</button>
+        <!-- <button type="button" class="btn btn-primary">作成する</button> -->
+        <button>作成する</button>
     </form>    
 
 
