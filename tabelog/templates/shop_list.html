@@ -2,21 +2,27 @@
 {% load static %}
 
 {% block content %}
+<div id="search-box">
+    <h1>店舗名・カテゴリーで検索</h1>
     <form action="" method="get">
         <input name="query" value="{{ request.GET.query }}" type="text" />
-        <button type="submit">店舗名・カテゴリー検索</button>
+        <button type="submit">検索</button>
     </form>
-    {% for category in categorys %}
-        <a href="{% url 'top' %}?category={{ category.id }}">{{ category.name }}</a>
-    {% endfor %}
+        <div id="category-box">
+            {% for category in categorys %}
+            <a href="{% url 'top' %}?category={{ category.id }}" class="btn">{{ category.name }}</a>
+            {% endfor %}
+        </div>
+</div>
+<div id="shop-list">
     <h1>店舗一覧</h1>
-    <table border="1">
+    <table border="0">
         <thead>
             <tr>
                 <th></th>
                 <th>店舗名</th>
                 <th>カテゴリー</th>
-                <th>説明</th>
+                <th>詳細</th>
             </tr>
         </thead>
         {% for shop in object_list %}
@@ -34,4 +40,6 @@
         </tr>
         {% endfor %}
     </table>
+</div>
+
 {% endblock %}
