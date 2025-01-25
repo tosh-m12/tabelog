@@ -2,61 +2,76 @@
 {% load static %}
 
 {% block content %}
-    <h1>店舗情報</h1>
-    <p>{{ object.name }}</p>
-    {% if object.image %}
-        <img src="{{ object.image.url }}" width="200px">
-    {% else %}
-        <img src="{% static 'image/noImage.png' %}" width="200px">
-    {% endif %}
-    {% if user.is_authenticated and user.is_paid %}
-        <form action="{% url 'fav-shop' object.pk %}" method="post">
-            {% csrf_token %}
-            {% if object in user.favorite_shop.all %}
-                <button type="submit" name="button">お気に入り解除</button>
-            {% else %}
-                <button type="submit" name="button">お気に入り追加</button>
-            {% endif %}
-        </form>
-    {% endif %}
+<div id="shop-name">
+    <h1>{{ object.name }}</h1>
     <p>{{ object.description }}</p>
-    <table>
+</div>
+<div id="shop-description">
+    {% if object.image %}
+    <img src="{{ object.image.url }}" width="100%">
+    {% else %}
+    <img src="{% static 'image/noImage.png' %}" width="100%">
+    {% endif %}
+</div>
+<div id="favorite">
+    {% if user.is_authenticated and user.is_paid %}
+    <form action="{% url 'fav-shop' object.pk %}" method="post">
+        {% csrf_token %}
+        {% if object in user.favorite_shop.all %}
+            <button type="submit" name="button" class="button-fav">お気に入り解除</button>
+        {% else %}
+            <button type="submit" name="button">お気に入り追加</button>
+        {% endif %}
+    </form>
+    {% else %}
+    <p>有料登録でお気に入り追加ができるようになります！</p>    
+    {% endif %}      
+</div>
+<div id="shop-details">
+    <table class="example">
         <tr>
-            <td>予算下限</td>
-            <td>{{ object.price_min }}円</td>
+            <td id="td-left">予算下限</td>
+            <td id="td-right">{{ object.price_min }}円</td>
         </tr>
         <tr>
-            <td>予算上限</td>
-            <td>{{ object.price_max }}円</td>
+            <td id="td-left">予算上限</td>
+            <td id="td-right">{{ object.price_max }}円</td>
         </tr>
         <tr>
-            <td>開店時間</td>
-            <td>{{ object.opening_time }}</td>
+            <td id="td-left">開店時間</td>
+            <td id="td-right">{{ object.opening_time }}</td>
         </tr>
         <tr>
-            <td>閉店時間</td>
-            <td>{{ object.closing_time }}</td>
+            <td id="td-left">閉店時間</td>
+            <td id="td-right">{{ object.closing_time }}</td>
         </tr>
         <tr>
-            <td>郵便番号</td>
-            <td>{{ object.postal_code }}</td>
+            <td id="td-left">郵便番号</td>
+            <td id="td-right">{{ object.postal_code }}</td>
         </tr>
         <tr>
-            <td>住所</td>
-            <td>{{ object.address }}</td>
+            <td id="td-left">住所</td>
+            <td id="td-right">{{ object.address }}</td>
         </tr>
         <tr>
-            <td>電話番号</td>
-            <td>{{ object.phone }}</td>
+            <td id="td-left">電話番号</td>
+            <td id="td-right">{{ object.phone }}</td>
         </tr>
         <tr>
-            <td>休業日</td>
-            <td>{{ object.regular_holiday }}</td>
+            <td id="td-left">休業日</td>
+            <td id="td-right">{{ object.regular_holiday }}</td>
         </tr>
     </table>
-    <h2>予約作成</h2>
-    <a href="{% url 'booking-create' object.id %}">作成</a>
-    <h2>レビュー</h2>
+</div>
+<div id="booking">
+    {% if user.is_authenticated and user.is_paid %}
+    <a href="{% url 'booking-create' object.id %}" class="btn">予約する</a>
+    {% else %}
+    <p>有料登録で予約ができるようになります！</p>
+    {% endif %}    
+</div>
+<div id="review">
+    <h2>レビュー情報</h2>
     {% for review in reviews %}
     <div>
         {% if user.is_authenticated and user.id == review.user.id %}
@@ -72,6 +87,10 @@
     {% endfor %}
     
     {% if user.is_authenticated and user.is_paid %}
-        <a href="{% url 'review-create' object.id %}">レビュー作成</a>
+        <a href="{% url 'review-create' object.id %}" class="btn">レビュー作成</a>
+    {% else %}
+        <p class="btn">有料登録でレビューが投稿できるようになります！</p>
     {% endif %}
+</div>
+
 {% endblock %}
