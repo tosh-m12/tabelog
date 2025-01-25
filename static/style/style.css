@@ -67,13 +67,13 @@ header {
   font-size: 20px;
 }
 
-.btn {
+#search-box .btn {
   height: auto;
   text-align: center;
   padding: auto 5px !important;
-  background-color: palegreen !important;
+  background-color: #96b97d !important;
   text-decoration: none;
-  color: black;
+  color: white;
   border-radius: 7px;
   margin: 10px auto;
 }
@@ -114,4 +114,115 @@ footer {
   color: #000;
   margin: 0;
   font-size: 18px;
+}
+
+#shop-name {
+  text-align: center;
+  margin: 8 auto;
+}
+
+#shop-name h1 {
+  font-size: 32px;
+}
+
+#shop-description {
+  margin: 10px 100px;
+  align-items: center;
+}
+
+#favorite form {
+  align-items: center;
+  margin: 20px 100px;
+}
+
+#favorite button {
+  width: 100%;
+  border: none; /* 枠線をなくす */
+  border-radius: 5px; /* 角丸をつける */
+  padding: 10px 10px; /* ボタンの内側の余白 */
+  margin: 5px auto; /* ボタン同士の余白 */
+  background-color: #96b97d; /* ボタンの背景色 */
+  color: white; /* ボタンの文字色 */
+  text-align: center; /* ボタンのテキストを中央揃えにする */
+  text-decoration: none; /* テキストに下線をつけない */
+  font-size: 15px; /* テキストのフォントサイズ */
+  cursor: pointer; /* マウスポインタを変更する */
+}
+
+#favorite p {
+  height: auto;
+  text-align: center;
+  padding: 10px 5px !important;
+  background-color: #96b97d !important;
+  text-decoration: none;
+  color: white;
+  border-radius: 7px;
+  margin: 10px 100px;
+}
+
+#shop-details {
+  display: block;
+  margin: 25px 100px;
+}
+
+#shop-details table {
+  width: 100%;
+  border-spacing: 2px;
+  border-collapse: separate;
+}
+
+#td-left {
+  padding-left: 10px;
+  padding-right: 20px;
+  background-color: lightgray;
+}
+
+#td-right {
+  width: max;
+  padding-left: 10px;
+  background-color: lightgray;
+}
+
+#booking .btn {
+  display: block;
+  height: auto;
+  text-align: center;
+  padding: 10px 5px !important;
+  background-color: #96b97d !important;
+  text-decoration: none;
+  color: white;
+  border-radius: 7px;
+  margin: 10px 100px;
+}
+
+#booking p {
+  height: auto;
+  text-align: center;
+  padding: 10px 5px !important;
+  background-color: #96b97d !important;
+  text-decoration: none;
+  color: white;
+  border-radius: 7px;
+  margin: 10px 100px;
+}
+
+#review {
+  display: block;
+  margin: 10px 100px;
+}
+
+#review h2 {
+  font-size: 24px;
+}
+
+#review .btn {
+  display: block;
+  height: auto;
+  text-align: center;
+  padding: 10px 5px !important;
+  background-color: #96b97d !important;
+  text-decoration: none;
+  color: white;
+  border-radius: 7px;
+  margin: 10px 0px;
 }
